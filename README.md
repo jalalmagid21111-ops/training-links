@@ -1,0 +1,2 @@
+# training-links
+for kobo

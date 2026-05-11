@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جاري التحويل...</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+  }
+  .card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 24px;
+    padding: 50px 40px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .icon { font-size: 64px; margin-bottom: 20px; }
+  .title { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .course { font-size: 16px; color: #a0c4ff; margin-bottom: 30px; min-height: 24px; }
+  .msg { font-size: 15px; color: #ccc; margin-bottom: 30px; }
+  .btn {
+    display: inline-block;
+    background: #0088cc;
+    color: white;
+    text-decoration: none;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(0,136,204,0.4);
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover { background: #006fa8; transform: translateY(-2px); }
+  .countdown { margin-top: 20px; font-size: 13px; color: #888; }
+  .bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 24px; overflow: hidden; }
+  .bar-fill { height: 100%; background: #0088cc; border-radius: 2px; animation: fill 3s linear forwards; }
+  @keyframes fill { from { width: 0% } to { width: 100% } }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="icon">✅</div>
+  <div class="title">تم التسجيل بنجاح!</div>
+  <div class="course" id="course-name">جاري التحميل...</div>
+  <div class="msg">سيتم تحويلك تلقائياً إلى مجموعة التلغرام خلال 3 ثوانٍ</div>
+  <a class="btn" id="tg-btn" href="#">📲 انضم إلى المجموعة الآن</a>
+  <div class="bar"><div class="bar-fill"></div></div>
+  <div class="countdown">سيتم التحويل التلقائي خلال 3 ثوانٍ</div>
+</div>
+
+<script>
+const links = {
+  a1: { name: "إدارة الأزمات والتعامل مع الحشود",           url: "https://t.me/+z7CDe3MHrqgwNGJk" },
+  a2: { name: "خدمة العملاء في وزارة الداخلية",              url: "https://t.me/+txMWE5YvW_03MWZk" },
+  a3: { name: "ضمانات وحقوق المتهم في مرحلة التحقيق",       url: "https://t.me/+0SO39UqiDKRkM2M0" },
+  a4: { name: "مبادئ الذكاء الاصطناعي الأمني",              url: "https://t.me/+qAVuQBYt6tIyZThk" },
+  a5: { name: "إدارة الموارد البشرية",                       url: "https://t.me/+jyt6jtueIjowOGM8" },
+  a6: { name: "المحادثة في اللغة الإنكليزية المستوى الأول", url: "https://t.me/+S20i8hO_0O04YmQ8" },
+  a7: { name: "القيادة وإدارة الفرق الأمنية",               url: "https://t.me/+nHkGy0pBzQhjM2E0" },
+  a8: { name: "الرخصة الدولية لقيادة الحاسب الآلي (ICDL)", url: "https://t.me/+Fe3qPyAsrk1mOWU0" },
+};
+
+const params = new URLSearchParams(window.location.search);
+const course = params.get('course');
+const data = links[course];
+
+if (data) {
+  document.getElementById('course-name').textContent = 'دورة: ' + data.name;
+  document.getElementById('tg-btn').href = data.url;
+  setTimeout(function() {
+    window.location.href = data.url;
+  }, 3000);
+} else {
+  document.getElementById('course-name').textContent = 'لم يتم تحديد الدورة';
+  document.getElementById('tg-btn').style.display = 'none';
+}
+</script>
+</body>
+</html>
